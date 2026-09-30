@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedHero - Turn Your LinkedIn Influential</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0a66c2;
+            --primary-dark: #0a1228;
+            --text-primary: #ffffff;
+            --text-secondary: #c1c6d4;
+            --bg-card: rgba(10, 18, 42, 0.6);
+            --bg-dark: #0a1228;
+            --accent-light: #a8c8ff;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1228 0%, #0d1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(12px);
+            background: rgba(10, 18, 42, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+            padding: 0 16px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-blue), #0066ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+
+        .header-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.24px;
+            display: none;
+        }
+
+        .header-btn {
+            background: var(--primary-blue);
+            color: #dbe6ff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0px 0px 8px rgba(10, 102, 194, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(10, 102, 194, 0.5);
+        }
+
+        .header-profile {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* ==================== MAIN CONTAINER ==================== */
+        main {
+            max-width: 390px;
+            margin: 0 auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            padding: 60px 0 40px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-green);
+            margin-bottom: 32px;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c1c6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 28px;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .subheadline {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .support-line {
+            background: rgba(10, 102, 194, 0.1);
+            border-left: 3px solid var(--primary-blue);
+            padding: 16px;
+            border-radius: 8px;
+            margin: 32px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .social-proof {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .avatar-stack {
+            display: flex;
+            margin-right: 12px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #0066ff);
+            border: 2px solid var(--bg-dark);
+            margin-left: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .proof-text {
+            font-size: 13px;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .proof-text strong {
+            font-weight: 600;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .proof-text .subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .stat-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 32px 0;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), #0066ff);
+            color: white;
+            box-shadow: 0px 4px 12px rgba(10, 102, 194, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(10, 102, 194, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ==================== ACHIEVEMENT SECTION ==================== */
+        .achievement-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-green);
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .delivery-points {
+            margin-bottom: 32px;
+        }
+
+        .point {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .point-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .point-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .closing-callout {
+            background: rgba(10, 102, 194, 0.15);
+            border-left: 4px solid var(--primary-blue);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        /* ==================== AUDIT SECTION ==================== */
+        .audit-section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audit-section::before {
+            content: '';
+            position: absolute;
+            top: -48px;
+            right: -48px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(10, 102, 194, 0.15), transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .audit-section::after {
+            content: '';
+            position: absolute;
+            bottom: -48px;
+            left: -48px;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(10, 102, 194, 0.1), transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .audit-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .offer-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-red);
+            margin-bottom: 16px;
+        }
+
+        .price-section {
+            margin: 20px 0 24px 0;
+        }
+
+        .price-main {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .price-original {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            display: inline-block;
+        }
+
+        .price-save {
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .audit-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .checklist {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .checklist-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .checklist-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-icon {
+            color: var(--accent-green);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .why-rupee {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .btn-payment {
+            background: linear-gradient(135deg, var(--accent-red), #dc2626);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0px 4px 12px rgba(239, 68, 68, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-payment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .urgency-note {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 8px;
+        }
+
+        /* ==================== FORM SECTION ==================== */
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            margin: 60px 0;
+        }
+
+        .form-header {
+            margin-bottom: 32px;
+        }
+
+        .form-subtitle {
+            font-size: 12px;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .form-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-blue), #0066ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0px 4px 12px rgba(10, 102, 194, 0.35);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(10, 102, 194, 0.5);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .trust-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 16px;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            display: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--accent-red);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            display: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* ==================== REVIEWS SECTION ==================== */
+        .reviews-section {
+            margin: 60px 0;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 12px;
+        }
+
+        .rating-text {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .review-quote {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #0066ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .reviewer-info {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .reviewer-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== FAQ SECTION ==================== */
+        .faq-section {
+            margin: 60px 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .accordion {
+            margin-bottom: 12px;
+        }
+
+        .accordion-header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: none;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding: 16px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: rgba(10, 18, 42, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 390px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .footer-brand {
+            margin-bottom: 32px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .footer-tagline {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-contact a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .header-text {
+                display: none;
+            }
+
+            main {
+                padding: 0 12px;
+            }
+
+            .footer-container {
+                padding: 0 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-logo">
+            <div class="logo-icon">LH</div>
+        </div>
+        <div class="header-nav">
+            <span class="header-text">Overview</span>
+            <a href="#audit" class="header-btn">Book Audit ↗</a>
+            <div class="header-profile">👤</div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="section hero">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Open for Limited Slots
+            </div>
+            <h1>Turn Your LinkedIn From Invisible to Influential</h1>
+            <p class="subheadline">We don't just "optimize profiles." We build your personal brand from scratch — with strategy, content, and consistency that actually gets you seen.</p>
+            <div class="support-line">
+                <strong>💡 Real Talk:</strong> Most LinkedIn advice is generic. Ours isn't. We give you a personalized roadmap that actually works.
+            </div>
+            <div class="social-proof">
+                <div class="avatar-stack">
+                    <div class="avatar">AB</div>
+                    <div class="avatar">CD</div>
+                    <div class="avatar">EF</div>
+                </div>
+                <div class="proof-text">
+                    <strong>340+ Professionals Growing</strong>
+                    <span class="subtitle">From Zero to Visible in 90 Days</span>
+                </div>
+                <div class="stat-badge">→ 85% Growth</div>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn-primary" onclick="document.querySelector('.form-section').scrollIntoView({behavior: 'smooth'})">
+                    Get Started for Free ↗
+                </button>
+                <button class="btn-secondary" onclick="document.querySelector('#audit').scrollIntoView({behavior: 'smooth'})">
+                    👉 Get Audit for ₹1
+                </button>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENT SECTION -->
+        <section class="section">
+            <div class="achievement-header">
+                <div class="section-badge">
+                    <span class="badge-dot"></span>
+                    Proven Results
+                </div>
+                <h2>Real Growth. Real Results.</h2>
+                <p class="subheadline">Data-driven metrics from our client personal brand sprints</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">340+</div>
+                    <div class="stat-label">Active Clients Transformed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">See Growth in Month 1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12K+</div>
+                    <div class="stat-label">Total Profile Views Generated</div>
+                </div>
+            </div>
+
+            <div class="delivery-points">
+                <div class="point">
+                    <div class="point-icon">✓</div>
+                    <div class="point-text"><strong>Strategic Profile Overhaul</strong> — Not cosmetic fixes. Real structural changes that signal authority.</div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">✓</div>
+                    <div class="point-text"><strong>Content That Converts</strong> — Posts that attract your ideal opportunities, not just vanity metrics.</div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">✓</div>
+                    <div class="point-text"><strong>Engagement Playbook</strong> — The exact formula to get seen, without automation or fake engagement.</div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">✓</div>
+                    <div class="point-text"><strong>Ongoing Support</strong> — You're not left alone. Weekly check-ins and course corrections.</div>
+                </div>
+                <div class="point">
+                    <div class="point-icon">✓</div>
+                    <div class="point-text"><strong>Accountability & Momentum</strong> — Structured sprints that keep you on track.</div>
+                </div>
+            </div>
+
+            <div class="closing-callout">
+                <strong>The Bottom Line:</strong> Your LinkedIn is either working for you, or it's working against you. We make sure it's the former.
+            </div>
+        </section>
+
+        <!-- AUDIT SECTION - ₹1 OFFER -->
+        <section class="audit-section" id="audit">
+            <div class="audit-content">
+                <div class="offer-tag">
+                    ⏰ Limited Time Offer
+                </div>
+
+                <h2>Get a Complete LinkedIn Audit for Just Rupee 1</h2>
+
+                <div class="price-section">
+                    <div class="price-main">
+                        ₹1
+                        <span class="price-original">₹2,499</span>
+                        <span class="price-save">Save 99.96%</span>
+                    </div>
+                </div>
+
+                <p class="audit-description">
+                    Not a sales call. A real breakdown of what's working, what's not, and what to fix.
+                </p>
+
+                <div class="checklist">
+                    <div class="checklist-title">
+                        ✓ Here's What You Get
+                    </div>
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <span>Profile Strength Score (0-100)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <span>Visibility Gap Analysis</span>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <span>Content Performance Benchmark</span>
+                    </div>
+                    <div class="checklist-item">
+                        <span class="check-icon">✓</span>
+                        <span>30-Day Action Plan (Custom to You)</span>
+                    </div>
+                </div>
+
+                <div class="why-rupee">
+                    <strong>💰 Why ₹1?</strong> We want you to experience real value before investing further. This isn't a gimmick—it's proof that we deliver.
+                </div>
+
+                <a href="https://payments.cashfree.com/forms/getaudit" target="_blank" class="btn-payment">
+                    🔥 Unlock Your Audit Now →
+                </a>
+
+                <div class="urgency-note">
+                    <span>⚡ Only 5 slots left this month</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORM SECTION -->
+        <section class="form-section">
+            <div class="form-header">
+                <div class="form-subtitle">Ready to grow?</div>
+                <h2 class="form-title">Let's Build Your LinkedIn Presence Together</h2>
+                <p class="form-description">Tell us a bit about you — and we'll show you exactly how to grow.</p>
+            </div>
+
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="e.g. Alex Rivera" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g. +1 (555) 019-2834" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Get Your Free Strategy Call →</button>
+                <div class="trust-indicator">
+                    🔒 Your data is safe. No spam. Ever.
+                </div>
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you! Check your email for next steps.
+                </div>
+                <div class="error-message" id="errorMessage">
+                    ✗ Something went wrong. Please try again.
+                </div>
+            </form>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section class="reviews-section">
+            <div class="achievement-header">
+                <div class="section-badge">
+                    <span class="badge-dot"></span>
+                    Social Proof
+                </div>
+                <h2>What Our Clients Say</h2>
+            </div>
+
+            <div class="review-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-text">5.0</div>
+                </div>
+                <p class="review-quote">"I had zero presence before this. Within weeks, I started getting inbound messages and profile views."</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">AB</div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-name">Aman Bhatt</div>
+                        <div class="reviewer-title">Founder, Tech Collective</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-text">5.0</div>
+                </div>
+                <p class="review-quote">"The clarity I got here saved me months of trial and error."</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">CD</div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-name">Divya Sharma</div>
+                        <div class="reviewer-title">Marketing Director, StartupXYZ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-text">5.0</div>
+                </div>
+                <p class="review-quote">"It's not just content — it's a full strategy. That's what made the difference."</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">EF</div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-name">Priya Patel</div>
+                        <div class="reviewer-title">Product Manager, TechCorp</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-text">5.0</div>
+                </div>
+                <p class="review-quote">"I finally understand how LinkedIn actually works."</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">GH</div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-name">Rajesh Kumar</div>
+                        <div class="reviewer-title">Sales Executive, Global Solutions</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p class="subheadline">Everything you need to know about our personal branding process</p>
+            </div>
+
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    Who is this for?
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        Anyone who wants to grow on LinkedIn, whether starting from zero or scaling their presence. Our methods work for professionals across all industries.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    How long until I see results?
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        Most clients see measurable changes within 2-3 weeks and significant growth in 90 days. It depends on consistency and execution.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    What if I'm not on LinkedIn yet?
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        Perfect. We'll set you up from scratch and ensure you're positioned correctly from day one. We handle everything.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    Is this guaranteed to work?
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        LinkedIn growth depends on consistency and execution. We provide the strategy and guidance—you drive the results. Success comes from working together.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    What's included in the personal branding sprint?
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        Profile audit and optimization, content strategy, 30-day posting calendar, 1-on-1 coaching calls, and performance tracking throughout your journey.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">LinkedHero</div>
+                <p class="footer-tagline">Building personal brands that stand out — not blend in.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#results">Results</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-contact">
+                📧 <a href="mailto:hello@linkedhero.com">hello@linkedhero.com</a>
+            </div>
+
+            <div class="footer-bottom">
+                © 2024 LinkedHero. All rights reserved. | <a href="#" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== FORM SUBMISSION ====================
+        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validate inputs
+            if (!name || !email || !phone) {
+                showError('Please fill in all fields.');
+                return;
+            }
+
+            // Hide previous messages
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            // Disable submit button
+            const submitBtn = e.target.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Build the URL with query parameters (CRITICAL FETCH RULES)
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbwD5HuOIvjNmVqWeCLHKG5Ox32_GGQPARCxo9DYhibcLHnRTA57jCusSxfMfDdwXnvJIQ/exec';
+                const params = new URLSearchParams({ name, email, phone });
+                const url = scriptUrl + '?' + params.toString();
+
+                // Fetch with no-cors mode (works on file://)
+                await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors'
+                }).then(() => {
+                    showSuccess();
+                    document.getElementById('leadForm').reset();
+                }).catch(() => {
+                    showError('Submission failed. Please try again.');
+                });
+
+            } catch (error) {
+                showError('Network error. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+
+            function showSuccess() {
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+
+            function showError(message = 'Something went wrong. Please try again.') {
+                document.getElementById('errorMessage').textContent = '✗ ' + message;
+                document.getElementById('errorMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('errorMessage').style.display = 'none';
+                }, 5000);
+            }
+        });
+
+        // ==================== ACCORDION TOGGLE ====================
+        function toggleAccordion(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
